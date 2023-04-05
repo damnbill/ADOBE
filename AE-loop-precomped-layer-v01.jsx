@@ -1,9 +1,9 @@
-﻿// get the currently selected layer
-var selectedLayer = app.project.activeItem.selectedLayers[0];
+// get the currently selected layer
 var curComp = app.project.activeItem;
+var selectedLayer = curComp.selectedLayers[0];
 
 // split the duplicated layer in two
-var compDuration = app.project.activeItem.duration;
+var compDuration = curComp.duration;
 var splitTime = compDuration / 2;
 
 // duplicate the selected layer
