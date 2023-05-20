@@ -1,4 +1,4 @@
-﻿
+
 //Author: Vincent Laquerre
 // fixing time remap by substracting one frame to last keyframe
 
@@ -13,8 +13,13 @@ selectedLayer.timeRemapEnabled = true;
 var secondKeyframeValue = selectedLayer.property("ADBE Time Remapping").keyValue(2);
 var secondKeyframeTime = selectedLayer.property("ADBE Time Remapping").keyTime(2);
 
-//value - 1 frame
-var newKeyframeValue = secondKeyframeValue - curComp.frameDuration;
+//value - 1 frame -- time - 1 frame
+var oneframe = curComp.frameDuration;
+var newKeyframeValue = secondKeyframeValue - oneframe;
+var newSecondKeyframeTime = secondKeyframeTime - oneframe;
 
 // Set the new value for the second keyframe
-selectedLayer.property("ADBE Time Remapping").setValueAtTime(secondKeyframeTime, newKeyframeValue);
+selectedLayer.property("ADBE Time Remapping").setValueAtTime(newSecondKeyframeTime, newKeyframeValue);
+
+// delete now obsolete 3rd keyframe
+selectedLayer.property("ADBE Time Remapping").removeKey(3);
